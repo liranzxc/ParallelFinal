@@ -1,0 +1,12 @@
+﻿  tests.cpp
+  Classifier_seq.cpp
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(71): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Running Code Analysis for C/C++...
+  Generating Code...
+  ThePerceptronClassifier_Seq.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\Debug\ThePerceptronClassifier_Seq.exe
+  ThePerceptronClassifier_Seq.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\Debug\ThePerceptronClassifier_Seq.pdb (Full PDB)
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(97): warning C6031: Return value ignored: 'fscanf'.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(109): warning C6031: Return value ignored: 'fscanf'.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(114): warning C6031: Return value ignored: 'fscanf'.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(178): warning C6011: Dereferencing NULL pointer 'W'. 
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(178): warning C6385: Reading invalid data from 'W':  the readable size is '_Param_(1)*_Param_(2)' bytes, but '16' bytes may be read.

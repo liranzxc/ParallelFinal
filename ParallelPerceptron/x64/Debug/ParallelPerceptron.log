@@ -1,0 +1,22 @@
+﻿  
+  B:\cpp\ThePerceptronClassifier_Seq\ParallelPerceptron>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\Program Files\MPICH2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od  /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "B:\cpp\ThePerceptronClassifier_Seq\ParallelPerceptron\kernel.cu" -clean 
+  kernel.cu
+  Compiling CUDA source file kernel.cu...
+  
+  B:\cpp\ThePerceptronClassifier_Seq\ParallelPerceptron>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\Program Files\MPICH2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Fdx64\Debug\vc140.pdb /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "B:\cpp\ThePerceptronClassifier_Seq\ParallelPerceptron\kernel.cu" 
+  kernel.cu
+  util.cpp
+  program.cpp
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(27): warning C4101: 'q': unreferenced local variable
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(151): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(158): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(170): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(175): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+  Generating Code...
+     Creating library B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.lib and object B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.exp
+  ParallelPerceptron.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.exe
+  ParallelPerceptron.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.pdb (Full PDB)

@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThePerceptronClassifier_Seq", "ThePerceptronClassifier_Seq\ThePerceptronClassifier_Seq.vcxproj", "{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ParallelPerceptron", "ParallelPerceptron\ParallelPerceptron.vcxproj", "{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Debug|x64.ActiveCfg = Debug|x64
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Debug|x64.Build.0 = Debug|x64
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Debug|x86.ActiveCfg = Debug|Win32
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Debug|x86.Build.0 = Debug|Win32
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Release|x64.ActiveCfg = Release|x64
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Release|x64.Build.0 = Release|x64
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Release|x86.ActiveCfg = Release|Win32
+		{9B7B2E93-CAD8-47D8-8842-74CF27F20A34}.Release|x86.Build.0 = Release|Win32
+		{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}.Debug|x64.ActiveCfg = Debug|x64
+		{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}.Debug|x64.Build.0 = Debug|x64
+		{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}.Debug|x86.ActiveCfg = Debug|x64
+		{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}.Release|x64.ActiveCfg = Release|x64
+		{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}.Release|x64.Build.0 = Release|x64
+		{BF035FCB-FEE9-4C37-9688-8DC1F83D77CA}.Release|x86.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
