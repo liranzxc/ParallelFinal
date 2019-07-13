@@ -1,12 +1,13 @@
-﻿  tests.cpp
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'b:\cpp\theperceptronclassifier_seq\debug\theperceptronclassifier_seq.pdb' because it is being used by another process.
+  tests.cpp
   Classifier_seq.cpp
-b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(71): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(73): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   Running Code Analysis for C/C++...
   Generating Code...
   ThePerceptronClassifier_Seq.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\Debug\ThePerceptronClassifier_Seq.exe
   ThePerceptronClassifier_Seq.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\Debug\ThePerceptronClassifier_Seq.pdb (Full PDB)
-b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(97): warning C6031: Return value ignored: 'fscanf'.
-b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(109): warning C6031: Return value ignored: 'fscanf'.
-b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(114): warning C6031: Return value ignored: 'fscanf'.
-b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(178): warning C6011: Dereferencing NULL pointer 'W'. 
-b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(178): warning C6385: Reading invalid data from 'W':  the readable size is '_Param_(1)*_Param_(2)' bytes, but '16' bytes may be read.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(99): warning C6031: Return value ignored: 'fscanf'.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(111): warning C6031: Return value ignored: 'fscanf'.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(116): warning C6031: Return value ignored: 'fscanf'.
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(180): warning C6011: Dereferencing NULL pointer 'W'. 
+b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\classifier_seq.cpp(180): warning C6385: Reading invalid data from 'W':  the readable size is '_Param_(1)*_Param_(2)' bytes, but '16' bytes may be read.

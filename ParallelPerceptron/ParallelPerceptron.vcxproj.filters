@@ -34,5 +34,8 @@
     <ClInclude Include="util.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="testCuda.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

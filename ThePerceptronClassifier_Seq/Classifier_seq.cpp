@@ -40,6 +40,8 @@ void CreateNewWeights(float ** W, int sign, float * x,int group, float alfa , in
 	Scalar(&tempResult, alfa, x,k);
 	Add(W, tempResult,k);
 
+	printf("new W = [%f ,%f,%f,%f] \n", (*W)[0], (*W)[1], (*W)[2], (*W)[3]);
+
 
 
 }

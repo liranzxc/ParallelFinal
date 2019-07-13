@@ -4,56 +4,56 @@
     <SFA>
       <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
       <FILENAME>classifier_seq.cpp</FILENAME>
-      <LINE>97</LINE>
+      <LINE>99</LINE>
       <COLUMN>7</COLUMN>
     </SFA>
     <DEFECTCODE>6031</DEFECTCODE>
     <DESCRIPTION>Return value ignored: 'fscanf'.</DESCRIPTION>
     <FUNCTION>main</FUNCTION>
     <DECORATED>main</DECORATED>
-    <FUNCLINE>84</FUNCLINE>
+    <FUNCLINE>86</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
       <FILENAME>classifier_seq.cpp</FILENAME>
-      <LINE>109</LINE>
+      <LINE>111</LINE>
       <COLUMN>9</COLUMN>
     </SFA>
     <DEFECTCODE>6031</DEFECTCODE>
     <DESCRIPTION>Return value ignored: 'fscanf'.</DESCRIPTION>
     <FUNCTION>main</FUNCTION>
     <DECORATED>main</DECORATED>
-    <FUNCLINE>84</FUNCLINE>
+    <FUNCLINE>86</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
       <FILENAME>classifier_seq.cpp</FILENAME>
-      <LINE>114</LINE>
+      <LINE>116</LINE>
       <COLUMN>8</COLUMN>
     </SFA>
     <DEFECTCODE>6031</DEFECTCODE>
     <DESCRIPTION>Return value ignored: 'fscanf'.</DESCRIPTION>
     <FUNCTION>main</FUNCTION>
     <DECORATED>main</DECORATED>
-    <FUNCLINE>84</FUNCLINE>
+    <FUNCLINE>86</FUNCLINE>
     <PATH></PATH>
   </DEFECT>
   <DEFECT>
     <SFA>
       <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
       <FILENAME>classifier_seq.cpp</FILENAME>
-      <LINE>178</LINE>
+      <LINE>180</LINE>
       <COLUMN>9</COLUMN>
     </SFA>
     <DEFECTCODE>6011</DEFECTCODE>
     <DESCRIPTION>Dereferencing NULL pointer 'W'. </DESCRIPTION>
     <FUNCTION>main</FUNCTION>
     <DECORATED>main</DECORATED>
-    <FUNCLINE>84</FUNCLINE>
+    <FUNCLINE>86</FUNCLINE>
     <PROBABILITY>1</PROBABILITY>
     <RANK>4</RANK>
     <CATEGORY>
@@ -63,68 +63,62 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>87</LINE>
+        <LINE>89</LINE>
         <COLUMN>5</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>87</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>87</LINE>
-        <COLUMN>11</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>28</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>31</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>89</LINE>
-        <COLUMN>6</COLUMN>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>89</LINE>
+        <COLUMN>11</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>90</LINE>
-        <COLUMN>5</COLUMN>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>90</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>90</LINE>
+        <COLUMN>28</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>90</LINE>
+        <COLUMN>31</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>91</LINE>
-        <COLUMN>10</COLUMN>
+        <COLUMN>6</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>97</LINE>
-        <COLUMN>7</COLUMN>
+        <LINE>92</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>93</LINE>
+        <COLUMN>10</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
@@ -136,48 +130,54 @@
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>101</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>103</LINE>
-        <COLUMN>10</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>103</LINE>
-        <COLUMN>19</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>117</LINE>
         <COLUMN>7</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>131</LINE>
-        <COLUMN>12</COLUMN>
+        <LINE>103</LINE>
+        <COLUMN>14</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>131</LINE>
-        <COLUMN>35</COLUMN>
+        <LINE>105</LINE>
+        <COLUMN>10</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>105</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>119</LINE>
+        <COLUMN>7</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>133</LINE>
-        <COLUMN>8</COLUMN>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>35</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>135</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>137</LINE>
         <COLUMN>8</COLUMN>
         <KEYEVENT>
           <ID>1</ID>
@@ -189,19 +189,19 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>139</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>140</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>141</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>142</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>143</LINE>
         <COLUMN>31</COLUMN>
         <KEYEVENT>
           <ID>2</ID>
@@ -213,19 +213,19 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>170</LINE>
+        <LINE>172</LINE>
         <COLUMN>5</COLUMN>
         <KEYEVENT>
           <ID>3</ID>
           <KIND>declaration</KIND>
           <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>'W' is an In/Out argument to 'GetNumberofMisLeadPoints' (declared on line 46)</MESSAGE>
+          <MESSAGE>'W' is an In/Out argument to 'GetNumberofMisLeadPoints' (declared on line 48)</MESSAGE>
         </KEYEVENT>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>172</LINE>
+        <LINE>174</LINE>
         <COLUMN>8</COLUMN>
         <KEYEVENT>
           <ID>4</ID>
@@ -237,25 +237,25 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>174</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>175</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>176</LINE>
         <COLUMN>9</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>177</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>178</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>180</LINE>
         <COLUMN>9</COLUMN>
         <KEYEVENT>
           <ID>5</ID>
@@ -270,14 +270,14 @@
     <SFA>
       <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
       <FILENAME>classifier_seq.cpp</FILENAME>
-      <LINE>178</LINE>
+      <LINE>180</LINE>
       <COLUMN>9</COLUMN>
     </SFA>
     <DEFECTCODE>6385</DEFECTCODE>
     <DESCRIPTION>Reading invalid data from 'W':  the readable size is '_Param_(1)*_Param_(2)' bytes, but '16' bytes may be read.</DESCRIPTION>
     <FUNCTION>main</FUNCTION>
     <DECORATED>main</DECORATED>
-    <FUNCLINE>84</FUNCLINE>
+    <FUNCLINE>86</FUNCLINE>
     <PROBABILITY>1</PROBABILITY>
     <RANK>4</RANK>
     <CATEGORY>
@@ -287,68 +287,62 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>87</LINE>
+        <LINE>89</LINE>
         <COLUMN>5</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>87</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>87</LINE>
-        <COLUMN>11</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>7</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>18</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>28</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>88</LINE>
-        <COLUMN>31</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>89</LINE>
-        <COLUMN>6</COLUMN>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>89</LINE>
+        <COLUMN>11</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>90</LINE>
-        <COLUMN>5</COLUMN>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>90</LINE>
+        <COLUMN>18</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>90</LINE>
+        <COLUMN>28</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>90</LINE>
+        <COLUMN>31</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>91</LINE>
-        <COLUMN>10</COLUMN>
+        <COLUMN>6</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>97</LINE>
-        <COLUMN>7</COLUMN>
+        <LINE>92</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>93</LINE>
+        <COLUMN>10</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
@@ -360,90 +354,96 @@
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>101</LINE>
-        <COLUMN>14</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>103</LINE>
-        <COLUMN>10</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>103</LINE>
-        <COLUMN>19</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>105</LINE>
-        <COLUMN>16</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>107</LINE>
-        <COLUMN>11</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>107</LINE>
-        <COLUMN>20</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>112</LINE>
-        <COLUMN>19</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>114</LINE>
-        <COLUMN>8</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>103</LINE>
-        <COLUMN>25</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>103</LINE>
-        <COLUMN>19</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>117</LINE>
         <COLUMN>7</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>131</LINE>
-        <COLUMN>12</COLUMN>
+        <LINE>103</LINE>
+        <COLUMN>14</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>131</LINE>
-        <COLUMN>35</COLUMN>
+        <LINE>105</LINE>
+        <COLUMN>10</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>133</LINE>
+        <LINE>105</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>107</LINE>
+        <COLUMN>16</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>109</LINE>
+        <COLUMN>11</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>109</LINE>
+        <COLUMN>20</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>114</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>116</LINE>
         <COLUMN>8</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>105</LINE>
+        <COLUMN>25</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>105</LINE>
+        <COLUMN>19</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>119</LINE>
+        <COLUMN>7</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>12</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>133</LINE>
+        <COLUMN>35</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>135</LINE>
+        <COLUMN>8</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>137</LINE>
         <COLUMN>8</COLUMN>
         <KEYEVENT>
           <ID>1</ID>
@@ -455,19 +455,19 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>139</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>140</LINE>
-        <COLUMN>6</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>141</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>142</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>143</LINE>
         <COLUMN>31</COLUMN>
         <KEYEVENT>
           <ID>2</ID>
@@ -479,19 +479,19 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>170</LINE>
+        <LINE>172</LINE>
         <COLUMN>5</COLUMN>
         <KEYEVENT>
           <ID>3</ID>
           <KIND>declaration</KIND>
           <IMPORTANCE>Full</IMPORTANCE>
-          <MESSAGE>'W' is an In/Out argument to 'GetNumberofMisLeadPoints' (declared on line 46)</MESSAGE>
+          <MESSAGE>'W' is an In/Out argument to 'GetNumberofMisLeadPoints' (declared on line 48)</MESSAGE>
         </KEYEVENT>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>172</LINE>
+        <LINE>174</LINE>
         <COLUMN>8</COLUMN>
         <KEYEVENT>
           <ID>4</ID>
@@ -503,25 +503,25 @@
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>174</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
-        <LINE>175</LINE>
-        <COLUMN>9</COLUMN>
-      </SFA>
-      <SFA>
-        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
-        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>176</LINE>
         <COLUMN>9</COLUMN>
       </SFA>
       <SFA>
         <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
         <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>177</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
         <LINE>178</LINE>
+        <COLUMN>9</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>b:\cpp\theperceptronclassifier_seq\theperceptronclassifier_seq\</FILEPATH>
+        <FILENAME>classifier_seq.cpp</FILENAME>
+        <LINE>180</LINE>
         <COLUMN>9</COLUMN>
         <KEYEVENT>
           <ID>5</ID>

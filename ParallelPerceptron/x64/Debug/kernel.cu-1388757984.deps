@@ -332,3 +332,10 @@ C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include\device_launch_pa
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_wstdio.h
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\corecrt_stdio_config.h
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\util.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include\cuda_runtime.h
+C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include\device_launch_parameters.h
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\math.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\omp.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\stdarg.h
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\vcruntime.h
