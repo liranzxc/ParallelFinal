@@ -42,6 +42,8 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 			fflush(NULL);
 		}
 
+		double StartTime = omp_get_wtime();
+
 		// bcast all information
 		MPI_Bcast(&k, 1, MPI_INT, MASTER, MPI_COMM_WORLD); // for dim type point
 		MPI_Bcast(&limit, 1, MPI_INT, MASTER, MPI_COMM_WORLD);
@@ -76,6 +78,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 
 
+#pragma region init cuda points const
 
 		// init cuda constact 
 		Point * dev_pts = NULL;
@@ -91,25 +94,17 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		mallocConstastCuda(pts, n, k, &dev_pts, &dev_n, &dev_k, &dev_values);
 		
 
-
-		//	DoJob(0.01, 0.10,dev_pts,dev_values,dev_n,dev_k,n,k,limit,QC,qMin,wMin,alfaMin);
-		//	printf("alfa %f , q = %lf , from process %d \n", *alfaMin, *qMin, myrank);
-		//	printf("mini value of W : [%f,%f,%f,%f] \n", wMin[0], wMin[1], wMin[2], wMin[3]);
-
-
+#pragma endregion
 		
 
-
-		
-// number of cores(processes) in each cpu  = assume 4 
 
 		if (myrank == MASTER)
 		{
 
-			float * AlfasFromProcess = (float*)malloc(sizeof(float)*size);
+			float * alfasFromProcesses = (float*)malloc(sizeof(float)*size);
 
 			float currectWorkAlfa = alfa_zero;
-			int currectwork = 1;
+			int currectWork = 1;
 
 			float miniumOfminimusAlfas;
 			float indexProcessofMinimunAlfa = -1;
@@ -124,68 +119,53 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 				currectWorkAlfa = currectWorkAlfa + alfa_zero*NUM_PROCESSES;
 
 				if (currectWorkAlfa > alfa_max) currectWorkAlfa = alfa_max;
-				/*printf("master sending to %d  work => (%f => %f)\n", currectwork,tempwork, indexerwork);
-				fflush(NULL);*/
-				MPI_Send(&startAlfaWorker, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&currectWorkAlfa, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&alfa_zero, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&startAlfaWorker, 1, MPI_FLOAT, currectWork, 0, MPI_COMM_WORLD);
+				MPI_Send(&currectWorkAlfa, 1, MPI_FLOAT, currectWork, 0, MPI_COMM_WORLD);
+				MPI_Send(&alfa_zero, 1, MPI_FLOAT, currectWork, 0, MPI_COMM_WORLD);
 
-				currectwork = ((currectwork + 1) % size);
-				if (currectwork == MASTER && currectWorkAlfa < alfa_max) // finish one cycle ,so master do job
+				currectWork = ((currectWork + 1) % size);
+				if (currectWork == MASTER && currectWorkAlfa < alfa_max) // finish one cycle ,so master do job
 			    {
 					startAlfaWorker = currectWorkAlfa;
 					currectWorkAlfa = currectWorkAlfa + alfa_zero*NUM_PROCESSES;
-					if (currectWorkAlfa > alfa_max) currectWorkAlfa = alfa_max;
-			  //  	/*printf("master %d do job on %f - %f \n", myrank, tempwork, indexerwork);
-					//fflush(NULL);*/
+					if (currectWorkAlfa > alfa_max) currectWorkAlfa = alfa_max; // when we have remainder 
 
 					DoJob(startAlfaWorker, currectWorkAlfa,alfa_zero, dev_pts, dev_values, dev_n, dev_k, n, k, limit, QC, qMin, wMin, alfaMin);
 
-					/*printf("master %d finish job on %f - %f \n", myrank, tempwork, indexerwork);
-					printf("mater finish to do job Qmin = %lf and Alfa Min = %f \n ",*qMin, *alfaMin);
-					printf("W = [%f,%f,%f,%f] \n ", wMin[0],wMin[1], wMin[2], wMin[3]);*/
 
-				//	fflush(NULL);
-
-					if (*qMin == 2.0)
+					if (*qMin == 2.0) // when we get Qmin == 2 , we detect the alfa didnt get < QC
 					{
-						AlfasFromProcess[MASTER] = -1;
+						alfasFromProcesses[MASTER] = -1;
 					}
 					else
 					{
-						AlfasFromProcess[MASTER] = *alfaMin;
+						alfasFromProcesses[MASTER] = *alfaMin;
 
 					}
 
-					printf("start recive from process \n ");
-					fflush(NULL);
 					int counterRecive = 1;
 					float tempResultAlfa = 0;
 					while (counterRecive < size)
 					{
 						MPI_Recv(&tempResultAlfa, 1, MPI_FLOAT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
-						AlfasFromProcess[status.MPI_SOURCE] = tempResultAlfa;
+						alfasFromProcesses[status.MPI_SOURCE] = tempResultAlfa;
 						counterRecive += 1;
-
-
-						/*printf("receive from process %d alfa %f \n ",status.MPI_SOURCE,tempResultAlfa);
-						fflush(NULL);*/
 
 					}
 
 					//receive from all need to find minimum
-					miniumOfminimusAlfas = AlfasFromProcess[0];
+					miniumOfminimusAlfas = alfasFromProcesses[0];
 					for (int i = 1; i < size; i++)
 					{
-						if (AlfasFromProcess[i] == -1)
+						if (alfasFromProcesses[i] == -1) // alfa not enough good ( <QC)
 						{
 							continue;
 						}
 						else
 						{
-							if (miniumOfminimusAlfas > AlfasFromProcess[i])
+							if (miniumOfminimusAlfas > alfasFromProcesses[i])
 							{
-								miniumOfminimusAlfas = AlfasFromProcess[i];
+								miniumOfminimusAlfas = alfasFromProcesses[i];
 								indexProcessofMinimunAlfa = i;
 							}
 						}
@@ -209,10 +189,14 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 					}
 
 					//do job work
-					currectwork = ((currectwork + 1) % size);
+					currectWork = ((currectWork + 1) % size);
 				}
 			}
 
+			double EndTime = omp_get_wtime();
+			FreeConstanstCuda(dev_pts, dev_values, dev_n, dev_k);
+			printf("Time take : %lf \n", EndTime - StartTime);
+			fflush(NULL);
 
 			if (miniumOfminimusAlfas != -1)
 			{
@@ -245,9 +229,9 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 			for (int worker = 0; worker < size; worker++) // terminal all workers
 			{
-				MPI_Send(&exit_label, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&exit_label, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&exit_label, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&exit_label, 1, MPI_FLOAT, currectWork, 0, MPI_COMM_WORLD);
+				MPI_Send(&exit_label, 1, MPI_FLOAT, currectWork, 0, MPI_COMM_WORLD);
+				MPI_Send(&exit_label, 1, MPI_FLOAT, currectWork, 0, MPI_COMM_WORLD);
 
 			}
 		} 
@@ -270,15 +254,9 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 					break;
 				}
 
-			/*	printf("slave %d do job on %f - %f \n", myrank,alfa_zero,alfa_max);
-				fflush(NULL);*/
-
 
 				DoJob(alfa_zero, alfa_max,step, dev_pts, dev_values, dev_n, dev_k, n, k, limit, QC, qMin, wMin, alfaMin);
-			//	printf("slave finish do job  on %f - %f \n", alfa_zero, alfa_max);
-				/*printf("slave finish to do job Qmin = %lf and Alfa Min = %f \n ", *qMin, *alfaMin);
-				printf("W = [%f,%f,%f,%f] \n ", wMin[0], wMin[1], wMin[2], wMin[3]);
-				fflush(NULL);*/
+			
 
 				// return alfaMin , wait for status 
 
@@ -295,7 +273,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 					MPI_Recv(&statusContinue, 1, MPI_INT, MASTER, 0, MPI_COMM_WORLD, &status); // wait for status
 
-					if (statusContinue == 200) // i am the minium  !
+					if (statusContinue == 200) // I am the minium from all processes !
 					{
 						MPI_Send(qMin, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD);
 						MPI_Send(wMin, k+1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD);
@@ -307,18 +285,13 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 					}
 
 				}
-
-
-
-				//do job work
 			}
+
+			FreeConstanstCuda(dev_pts, dev_values, dev_n, dev_k);
+
 		}
-
-
 		MPI_Finalize();
-
 		return 0;
-
 	}
 
 	int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero, float * alfa_max, int * limit, float * QC)
@@ -404,14 +377,15 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		double maxIteraction = (alfaMax - alfaZero) / stepAlfa;
 		int numofSteps = (int)maxIteraction;
 
-		printf(" JOB %f - %f \n ", alfaZero, alfaMax);
+		//printf(" JOB %f - %f \n ", alfaZero, alfaMax);
 
-		printf("numbers of steps : %d \n", numofSteps);
-		fflush(NULL);
+		//printf("numbers of steps : %d \n", numofSteps);
+		//fflush(NULL);
 
 
 		double * Q_saved = (double*)malloc(numofSteps*sizeof(double));
 		float ** WSaved = (float**)malloc(numofSteps * sizeof(float * ));
+
 
 
 		#pragma omp parallel for
@@ -430,9 +404,9 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 		//get mininum q from all q's , get W save ,and alfa
 
+
 		double minQ = Q_saved[0];
 		int indexer = 0;
-
 		for (int i = 1; i < numofSteps; i++)
 		{
 			if (Q_saved[i] < minQ)
