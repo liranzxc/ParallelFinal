@@ -2,7 +2,7 @@
 #include "Classifier_seq.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <omp.h>
 void Scalar(float ** result, float alfa, float * x, int k);
 void Add(float ** W, float * tempResult, int k);
 void CreateNewWeights(float ** W, int sign, float * x,int group, float alfa, int k);
@@ -40,7 +40,7 @@ void CreateNewWeights(float ** W, int sign, float * x,int group, float alfa , in
 	Scalar(&tempResult, alfa, x,k);
 	Add(W, tempResult,k);
 
-	printf("new W = [%f ,%f,%f,%f] \n", (*W)[0], (*W)[1], (*W)[2], (*W)[3]);
+//	printf("new W = [%f ,%f,%f,%f] \n", (*W)[0], (*W)[1], (*W)[2], (*W)[3]);
 
 
 
@@ -88,7 +88,7 @@ int main()
 	
 	int n, k, limit;
 	float alfa_zero, alfa_max, QC,q;
-	char * data_path = "B://cpp//ThePerceptronClassifier_Seq//ThePerceptronClassifier_Seq//data.txt";
+	char * data_path = "B://cpp//ThePerceptronClassifier_Seq//ThePerceptronClassifier_Seq//dataset.txt";
 	FILE* file = fopen(data_path, "r");
 	if (file == NULL)
 	{
@@ -99,7 +99,7 @@ int main()
 	fscanf(file, "%d %d %f %f %d %f", &n,&k , &alfa_zero,&alfa_max , &limit,&QC);
 
 	printf("n = %d  k= %d alfa0 = %f alfa_max = %f limit = %d  QC =%f \n", n, k, alfa_zero, alfa_max, limit, QC);
-
+	fflush(NULL);
 	struct Point * pts =(Point*)malloc(sizeof(Point) * n); // create n array of points
 
 	for (int i = 0; i < n; i++)
@@ -128,13 +128,13 @@ int main()
 
 	
 
-
+	double StartTime = omp_get_wtime();
 	
 	for (float alfa = alfa_zero; alfa < alfa_max; alfa = alfa + alfa_zero) // running over all alfa
 	{
 		printf("Alfa %f \n", alfa);
 
-		float * W =(float*)calloc(k+1, sizeof(float)); // 2.0 <0,0>
+		float * W = (float*)calloc(k + 1, sizeof(float)); // 2.0 <0,0>
 		//printf("W = %f %f %f \n", W[0], W[1], W[2]);
 
 
@@ -147,29 +147,32 @@ int main()
 
 			for (int i = 0; i < n; i++) // over points 3.0
 			{
-				double F_xi = dot(W, pts[i].values, k+1); // W*X scalar 
+				double F_xi = dot(W, pts[i].values, k + 1); // W*X scalar 
 
 				int sign = F_xi >= 0 ? 1 : -1;
 
 
-				if (pts[i].group != sign  )   // A group ,mislead
+				if (pts[i].group != sign)   // A group ,mislead
 				{
 					sign = (pts[i].group - sign) / 2;
 
-					CreateNewWeights(&W, sign, pts[i].values, pts[i].group, alfa, k+1);
-					 
+					CreateNewWeights(&W, sign, pts[i].values, pts[i].group, alfa, k + 1);
+
 					break;
 				}
 
 				counter_points_classified_properly++;
-				
+
 			}
 
 			//printf("W = %f %f \n", W[0], W[1]);
 			counter_limit++;
 		} // while close
 
-		 q = GetNumberofMisLeadPoints(W, pts, k+1, n);
+		q = GetNumberofMisLeadPoints(W, pts, k + 1, n);
+
+
+
 
 		if (q <= QC)
 		{
@@ -177,20 +180,24 @@ int main()
 			printf("q = %f \n", q);
 			printf("alfa = %f \n", alfa);
 
-			printf("w x = %f y = %f z=%f b =%f \n", W[0]*100.0,W[1]*100.0,W[2]*100.0,W[3]*100.0);
+			printf("w x = %f y = %f z=%f b =%f \n", W[0] * 100.0, W[1] * 100.0, W[2] * 100.0, W[3] * 100.0);
 			//printf("w x = %f y = %f  b =%f \n", W[0] * 100.0, W[1] * 100.0, W[2] * 100.0);
+			fflush(NULL);
 
 			break;
 
 		}
-	/*	else
+		else
 		{
-			printf("not good q = %f \n", q);
-			printf("not good w %f %f \n", W[0], W[1]);
+			printf("not found alfa \n");
 
-		}*/
+		}
 
 	}
+	
+	double EndTime = omp_get_wtime();
+	printf("Time take  : %lf \n", EndTime - StartTime);
+	fflush(NULL);
 
 
 	
