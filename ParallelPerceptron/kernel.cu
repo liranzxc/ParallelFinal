@@ -15,34 +15,7 @@ __global__ void addKernel(int *c, const int *a, const int *b)
 	int i = threadIdx.x;
 	c[i] = a[i] + b[i];
 }
-//
-//int main()
-//{
-//    const int arraySize = 5;
-//    const int a[arraySize] = { 1, 2, 3, 4, 5 };
-//    const int b[arraySize] = { 10, 20, 30, 40, 50 };
-//    int c[arraySize] = { 0 };
-//
-//    // Add vectors in parallel.
-//    cudaError_t cudaStatus = addWithCuda(c, a, b, arraySize);
-//    if (cudaStatus != cudaSuccess) {
-//        fprintf(stderr, "addWithCuda failed!");
-//        return 1;
-//    }
-//
-//    printf("{1,2,3,4,5} + {10,20,30,40,50} = {%d,%d,%d,%d,%d}\n",
-//        c[0], c[1], c[2], c[3], c[4]);
-//
-//    // cudaDeviceReset must be called before exiting in order for profiling and
-//    // tracing tools such as Nsight and Visual Profiler to show complete traces.
-//    cudaStatus = cudaDeviceReset();
-//    if (cudaStatus != cudaSuccess) {
-//        fprintf(stderr, "cudaDeviceReset failed!");
-//        return 1;
-//    }
-//
-//    return 0;
-//}
+
 
 
 void MyCudaMalloc(void** dev_pointer, size_t size, int error_label)
@@ -54,7 +27,7 @@ void MyCudaMalloc(void** dev_pointer, size_t size, int error_label)
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaMalloc failed! error_label : %d ", error_label);
 
-		MyCudaFree(*dev_pointer);
+		MyCudaFree(*dev_pointer,88);
 	}
 
 
@@ -71,9 +44,13 @@ void MyCudaCopy(void* dest, void * src, size_t size, cudaMemcpyKind kind, int er
 
 }
 
-void MyCudaFree(void * object)
+void MyCudaFree(void * object,int error_label)
 {
-	cudaFree(object);
+	cudaError_t cudaStatus;
+	cudaStatus = cudaFree(object);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaMemcpy failed! error_label : %d", error_label);
+	}
 }
 
 __device__ float dot(float * dev_w, float * dev_x,int indexValues, int * dev_k)
@@ -352,7 +329,7 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 		if (q <= QC)
 				return q;
 		else
-			return 2; // q that never will get and larger from all q possiblies .
+			return 2.0; // q that never will get and larger from all q possiblies .
 
 
 
