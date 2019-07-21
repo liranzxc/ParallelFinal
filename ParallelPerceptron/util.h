@@ -8,7 +8,7 @@
 #include "util.h"
 
 #define MASTER 0
-#define NUM_PROCESSES 4
+#define NUM_PROCESSES 2
 struct Point
 {
 
