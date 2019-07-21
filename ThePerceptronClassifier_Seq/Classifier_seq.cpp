@@ -3,17 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void Scalar(float ** result, float alfa, float * x, int k);
-void Add(float ** W, float * tempResult, int k);
-void CreateNewWeights(float ** W, int sign, float * x,int group, float alfa, int k);
-float dot(float * W, float * x, int k);
+void Scalar(double ** result, double alfa, double * x, int k);
+void Add(double ** W, double * tempResult, int k);
+void CreateNewWeights(double ** W, int sign, double * x,int group, double alfa, int k);
+double dot(double * W, double * x, int k);
 
 struct Point
 {
-	float * values;
+	double * values;
 	int group;
 };
-void Scalar(float ** result,float alfa, float * x, int k)
+void Scalar(double ** result, double alfa, double * x, int k)
 {
 	for (int i = 0; i < k; i++)
 	{
@@ -21,18 +21,18 @@ void Scalar(float ** result,float alfa, float * x, int k)
 	}
 }
 
-void Add(float ** Result , float * X, int k)
+void Add(double ** Result , double * X, int k)
 {
 	for (int i = 0; i < k; i++)
 	{
 		(*Result)[i] = (*Result)[i] + X[i];
 	}
 }
-void CreateNewWeights(float ** W, int sign, float * x,int group, float alfa , int k)
+void CreateNewWeights(double ** W, int sign, double * x,int group, double alfa , int k)
 {
 // alfa *(group - sign ) * pts // old
 
-	float * tempResult =(float*)malloc(sizeof(float)*k);
+	double * tempResult =(double*)malloc(sizeof(double)*k);
 
 	//float temp = alfa*(group - sign);
 
@@ -40,17 +40,17 @@ void CreateNewWeights(float ** W, int sign, float * x,int group, float alfa , in
 	Scalar(&tempResult, alfa, x,k);
 	Add(W, tempResult,k);
 
-	printf("new W = [%f ,%f,%f,%f] \n", (*W)[0], (*W)[1], (*W)[2], (*W)[3]);
+	printf("new W = [%lf ,%lf,%lf,%lf] \n", (*W)[0], (*W)[1], (*W)[2], (*W)[3]);
 
 
 
 }
-float GetNumberofMisLeadPoints(float * W, Point * pts, int  k, int n)
+double GetNumberofMisLeadPoints(double * W, Point * pts, int  k, int n)
 {
-	float counter = 0;
+	double counter = 0;
 	for (int i = 0; i < n; i++) // over points 3.0
 	{
-		float F_xi = dot(W, pts[i].values, k);
+		double F_xi = dot(W, pts[i].values, k);
 
 		if (pts[i].group == 1 && F_xi < 0)   // A group ,mislead
 		{
@@ -72,9 +72,9 @@ float GetNumberofMisLeadPoints(float * W, Point * pts, int  k, int n)
 
 	return counter / (n*(1.0));
 }
-float dot(float * W, float * x, int k)
+double dot(double * W, double * x, int k)
 {
-	float scalar_multi = 0.0;
+	double scalar_multi = 0.0;
 
 	for (int i = 0; i < k; i++)
 	{
@@ -87,8 +87,8 @@ int main()
 {
 	
 	int n, k, limit;
-	float alfa_zero, alfa_max, QC,q;
-	char * data_path = "B://cpp//ThePerceptronClassifier_Seq//ThePerceptronClassifier_Seq//data.txt";
+	double alfa_zero, alfa_max, QC,q;
+	char * data_path = "B://cpp//ThePerceptronClassifier_Seq//ThePerceptronClassifier_Seq//data1.txt";
 	FILE* file = fopen(data_path, "r");
 	if (file == NULL)
 	{
@@ -96,19 +96,19 @@ int main()
 		exit(1);
 	}
 
-	fscanf(file, "%d %d %f %f %d %f", &n,&k , &alfa_zero,&alfa_max , &limit,&QC);
+	fscanf(file, "%d %d %lf %lf %d %lf", &n,&k , &alfa_zero,&alfa_max , &limit,&QC);
 
-	printf("n = %d  k= %d alfa0 = %f alfa_max = %f limit = %d  QC =%f \n", n, k, alfa_zero, alfa_max, limit, QC);
+	printf("n = %d  k= %d alfa0 = %lf alfa_max = %lf limit = %d  QC =%lf \n", n, k, alfa_zero, alfa_max, limit, QC);
 
 	struct Point * pts =(Point*)malloc(sizeof(Point) * n); // create n array of points
 
 	for (int i = 0; i < n; i++)
 	{
-		pts[i].values =(float*)malloc(sizeof(float)*(k+1)); // (2,20) exmaple
+		pts[i].values =(double*)malloc(sizeof(double)*(k+1)); // (2,20) exmaple
 
 		for (int j = 0; j < k; j++)
 		{
-			fscanf(file,"%f",&pts[i].values[j]);
+			fscanf(file,"%lf",&pts[i].values[j]);
 
 		}
 		pts[i].values[k] = 1; // plus 1 in points xi ( 2,3 ,1 )
@@ -130,11 +130,11 @@ int main()
 
 
 	
-	for (float alfa = alfa_zero; alfa < alfa_max; alfa = alfa + alfa_zero) // running over all alfa
+	for (double alfa = alfa_zero; alfa <= alfa_max; alfa = alfa + alfa_zero) // running over all alfa
 	{
-		printf("Alfa %f \n", alfa);
+		printf("Alfa %lf \n", alfa);
 
-		float * W =(float*)calloc(k+1, sizeof(float)); // 2.0 <0,0>
+		double * W =(double*)calloc(k+1, sizeof(double)); // 2.0 <0,0>
 		//printf("W = %f %f %f \n", W[0], W[1], W[2]);
 
 
@@ -174,11 +174,17 @@ int main()
 		if (q <= QC)
 		{
 			printf("************ results ********* \n");
-			printf("q = %f \n", q);
-			printf("alfa = %f \n", alfa);
+			printf("q = %lf \n", q);
+			printf("alfa = %lf \n", alfa);
 
-			printf("w x = %f y = %f z=%f b =%f \n", W[0]*100.0,W[1]*100.0,W[2]*100.0,W[3]*100.0);
-			//printf("w x = %f y = %f  b =%f \n", W[0] * 100.0, W[1] * 100.0, W[2] * 100.0);
+			printf("mini value of W : [");
+			for (int i = 0; i < k + 1; i++)
+			{
+				printf("%lf,", W[i]);
+
+
+			}
+			printf("] \n");
 
 			break;
 

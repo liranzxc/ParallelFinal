@@ -14,27 +14,27 @@ struct Point
 
 	int group;
 
-	float * values;
+	double * values;
 };
 
 void MyCudaMalloc(void** dev_pointer, size_t size, int error_label);
 
 void MyCudaCopy(void* dest, void * src, size_t size, cudaMemcpyKind kind, int error_label);
 
-void FreeConstanstCuda(Point * dev_pts, float * dev_values, int * dev_n, int * dev_k);
+void FreeConstanstCuda(Point * dev_pts, double * dev_values, int * dev_n, int * dev_k);
 
 void MyCudaFree(void * object,int error_label);
-cudaError_t FreeFunction( float * dev_W,float  * dev_alfa, int * dev_mislead,int * dev_tempresult);
-double ProcessAlfa(Point * dev_pts, float* dev_values ,float  * alfa, int * dev_n, 
-	int  * dev_k, int limit, float QC,int n ,int k,float ** WSaved);
+cudaError_t FreeFunction( double * dev_W,double  * dev_alfa, int * dev_mislead,int * dev_tempresult);
+double ProcessAlfa(Point * dev_pts, double* dev_values ,double  * alfa, int * dev_n, 
+	int  * dev_k, int limit, double QC,int n ,int k,double ** WSaved);
 
 
 
-__device__ float dot(float * dev_w, float * dev_x, int indexValues, int * dev_k);
+__device__ double dot(double * dev_w, double * dev_x, int indexValues, int * dev_k);
 
-__global__ void createNewWeight(float * dev_alfa, float *dev_values, int * indexerValues, float * W_dev);
+__global__ void createNewWeight(double * dev_alfa, double *dev_values, int * indexerValues, double * W_dev);
 
 
-void DoJob(float alfaZero, float alfaMax,float step, Point * dev_pts, float * dev_values, int * dev_n, int * dev_k, int n, int k, int limit,
-	float QC, double * qMin, float * wMin, float *alfaMin);
-void mallocConstastCuda(Point * pts, int n, int k, Point ** dev_pts, int ** dev_n, int ** dev_k, float ** dev_values);
+void DoJob(double alfaZero, double alfaMax,double step, Point * dev_pts, double * dev_values, int * dev_n, int * dev_k, int n, int k, int limit,
+	double QC, double * qMin, double * wMin, double *alfaMin);
+void mallocConstastCuda(Point * pts, int n, int k, Point ** dev_pts, int ** dev_n, int ** dev_k, double ** dev_values);

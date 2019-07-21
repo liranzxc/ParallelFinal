@@ -1,4 +1,4 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'b:\cpp\theperceptronclassifier_seq\parallelperceptron\x64\debug\vc140.pdb' because it is being used by another process.
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : Access to the path 'b:\cpp\theperceptronclassifier_seq\x64\debug\parallelperceptron.exe' is denied.
   
   B:\cpp\ThePerceptronClassifier_Seq\ParallelPerceptron>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -I"C:\Program Files\MPICH2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile   -g   -DWIN32 -DWIN64 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od  /FS /Zi /RTC1 /MDd " -o x64\Debug\kernel.cu.obj "B:\cpp\ThePerceptronClassifier_Seq\ParallelPerceptron\kernel.cu" -clean 
   kernel.cu
@@ -8,10 +8,9 @@
   kernel.cu
   util.cpp
   program.cpp
-b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(189): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(201): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(202): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(203): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(201): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(202): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+b:\cpp\theperceptronclassifier_seq\parallelperceptron\program.cpp(203): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating Code...
      Creating library B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.lib and object B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.exp
   ParallelPerceptron.vcxproj -> B:\cpp\ThePerceptronClassifier_Seq\x64\Debug\ParallelPerceptron.exe

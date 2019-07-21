@@ -11,13 +11,13 @@
 #include <math.h>
 using namespace std;
 
-int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero, float * alfa_max, int * limit, float * QC);
+int readfromfile(char * path, Point ** pts, int * n, int * k, double * alfa_zero, double * alfa_max, int * limit, double * QC);
 
 	int main(int argc, char *argv[])
 	{
 		int myrank, size;
 		MPI_Status status;
-		float exit_label = -1;
+		double exit_label = -1;
 
 		MPI_Init(&argc, &argv);
 		MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
@@ -25,13 +25,13 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 
 		int n, k, limit;
-		float alfa_zero, alfa_max, QC;
+		double alfa_zero, alfa_max, QC;
 		struct Point * pts;
 
 
 		if (myrank == MASTER)
 		{
-			char * path = "B:\\cpp\\ThePerceptronClassifier_Seq\\ThePerceptronClassifier_Seq\\dataset.txt";
+			char * path = "B:\\cpp\\ThePerceptronClassifier_Seq\\ThePerceptronClassifier_Seq\\data1.txt";
 			if (readfromfile(path, &pts, &n, &k, &alfa_zero, &alfa_max, &limit, &QC) == 0) {
 				printf("LIRAN ERROR : error reading from file \n");
 				MPI_Abort(MPI_COMM_WORLD, 1);
@@ -45,7 +45,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		// bcast all information
 		MPI_Bcast(&k, 1, MPI_INT, MASTER, MPI_COMM_WORLD); // for dim type point
 		MPI_Bcast(&limit, 1, MPI_INT, MASTER, MPI_COMM_WORLD);
-		MPI_Bcast(&QC, 1, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+		MPI_Bcast(&QC, 1, MPI_DOUBLE, MASTER, MPI_COMM_WORLD);
 		MPI_Bcast(&n, 1, MPI_INT, MASTER, MPI_COMM_WORLD);
 
 #pragma region master_boardcast status - all processes have same data without alfas
@@ -57,7 +57,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 			#pragma omp parallel for
 			for (int i = 0; i < n; i++)
 			{
-				pts[i].values = (float*)malloc(sizeof(float)*(k + 1)); // (2,20) exmaple
+				pts[i].values = (double*)malloc(sizeof(double)*(k + 1)); // (2,20) exmaple
 			}
 		}
 	
@@ -65,7 +65,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		//boardcast all values
 		for (int i = 0; i < n; i++)
 		{
-			MPI_Bcast(&pts[i].values[0], k + 1, MPI_FLOAT, MASTER, MPI_COMM_WORLD);
+			MPI_Bcast(&pts[i].values[0], k + 1, MPI_DOUBLE, MASTER, MPI_COMM_WORLD);
 			MPI_Bcast(&pts[i].group, 1, MPI_INT, MASTER, MPI_COMM_WORLD);
 		}
 
@@ -81,11 +81,11 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		Point * dev_pts = NULL;
 		int * dev_n = NULL;
 		int * dev_k = NULL;
-		float * dev_values = NULL;
+		double * dev_values = NULL;
 
 		double * qMin = (double*)malloc(sizeof(double));
-		float * wMin = (float*)malloc(sizeof(float)*(k+1));
-		float * alfaMin = (float*)malloc(sizeof(float));
+		double * wMin = (double*)malloc(sizeof(double)*(k+1));
+		double * alfaMin = (double*)malloc(sizeof(double));
 
 
 		mallocConstastCuda(pts, n, k, &dev_pts, &dev_n, &dev_k, &dev_values);
@@ -106,29 +106,29 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		if (myrank == MASTER)
 		{
 
-			float * AlfasFromProcess = (float*)malloc(sizeof(float)*size);
+			double * AlfasFromProcess = (double*)malloc(sizeof(double)*size);
 
-			float currectWorkAlfa = alfa_zero;
+			double currectWorkAlfa = alfa_zero;
 			int currectwork = 1;
 
-			float miniumOfminimusAlfas;
-			float indexProcessofMinimunAlfa = -1;
+			double miniumOfminimusAlfas;
+			double indexProcessofMinimunAlfa = -1;
 
 			double minQFound;
-			float * minWFound = (float*)malloc(sizeof(float)*k + 1);
+			double * minWFound = (double*)malloc(sizeof(double)*k + 1);
 
 
 			while (currectWorkAlfa < alfa_max) // dynmaic work
 			{
-				float startAlfaWorker = currectWorkAlfa;
+				double startAlfaWorker = currectWorkAlfa;
 				currectWorkAlfa = currectWorkAlfa + alfa_zero*NUM_PROCESSES;
 
 				if (currectWorkAlfa > alfa_max) currectWorkAlfa = alfa_max;
 				/*printf("master sending to %d  work => (%f => %f)\n", currectwork,tempwork, indexerwork);
 				fflush(NULL);*/
-				MPI_Send(&startAlfaWorker, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&currectWorkAlfa, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&alfa_zero, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&startAlfaWorker, 1, MPI_DOUBLE, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&currectWorkAlfa, 1, MPI_DOUBLE, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&alfa_zero, 1, MPI_DOUBLE, currectwork, 0, MPI_COMM_WORLD);
 
 				currectwork = ((currectwork + 1) % size);
 				if (currectwork == MASTER && currectWorkAlfa < alfa_max) // finish one cycle ,so master do job
@@ -160,10 +160,10 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 					printf("start recive from process \n ");
 					fflush(NULL);
 					int counterRecive = 1;
-					float tempResultAlfa = 0;
+					double tempResultAlfa = 0;
 					while (counterRecive < size)
 					{
-						MPI_Recv(&tempResultAlfa, 1, MPI_FLOAT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+						MPI_Recv(&tempResultAlfa, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
 						AlfasFromProcess[status.MPI_SOURCE] = tempResultAlfa;
 						counterRecive += 1;
 
@@ -200,7 +200,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 						// get all information for process 
 						MPI_Send(&statusSuccfully, 1, MPI_INT, indexProcessofMinimunAlfa, 0, MPI_COMM_WORLD);
 						MPI_Recv(&minQFound, 1, MPI_DOUBLE, indexProcessofMinimunAlfa, 0, MPI_COMM_WORLD, &status);
-						MPI_Recv(minWFound, k+1, MPI_FLOAT, indexProcessofMinimunAlfa, 0, MPI_COMM_WORLD, &status);
+						MPI_Recv(minWFound, k+1, MPI_DOUBLE, indexProcessofMinimunAlfa, 0, MPI_COMM_WORLD, &status);
 
 						// need to terminal all process
 						break;
@@ -245,9 +245,9 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 			for (int worker = 0; worker < size; worker++) // terminal all workers
 			{
-				MPI_Send(&exit_label, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&exit_label, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
-				MPI_Send(&exit_label, 1, MPI_FLOAT, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&exit_label, 1, MPI_DOUBLE, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&exit_label, 1, MPI_DOUBLE, currectwork, 0, MPI_COMM_WORLD);
+				MPI_Send(&exit_label, 1, MPI_DOUBLE, currectwork, 0, MPI_COMM_WORLD);
 
 			}
 		} 
@@ -256,13 +256,13 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 		// worker section 
 		else // workers
 		{
-			float step;
+			double step;
 			int statusContinue = 0;
 			while (true) // slaves get work
 			{
-				MPI_Recv(&alfa_zero, 1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD, &status);
-				MPI_Recv(&alfa_max, 1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD, &status);
-				MPI_Recv(&step, 1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD, &status);
+				MPI_Recv(&alfa_zero, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD, &status);
+				MPI_Recv(&alfa_max, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD, &status);
+				MPI_Recv(&step, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD, &status);
 
 
 				if (alfa_zero == exit_label || alfa_max == exit_label || step == exit_label)
@@ -285,20 +285,20 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 				if (*qMin == 2.0)
 				{
 					// not found
-					float ALFA_NOT_FOUND = -1;
-					MPI_Send(&ALFA_NOT_FOUND, 1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD);
+					double ALFA_NOT_FOUND = -1;
+					MPI_Send(&ALFA_NOT_FOUND, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD);
 
 				}
 				else
 				{
-					MPI_Send(alfaMin, 1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD);
+					MPI_Send(alfaMin, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD);
 
 					MPI_Recv(&statusContinue, 1, MPI_INT, MASTER, 0, MPI_COMM_WORLD, &status); // wait for status
 
 					if (statusContinue == 200) // i am the minium  !
 					{
 						MPI_Send(qMin, 1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD);
-						MPI_Send(wMin, k+1, MPI_FLOAT, MASTER, 0, MPI_COMM_WORLD);
+						MPI_Send(wMin, k+1, MPI_DOUBLE, MASTER, 0, MPI_COMM_WORLD);
 
 					}
 					else if (statusContinue == exit_label) // some process have a minimun alfa then I
@@ -321,7 +321,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 	}
 
-	int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero, float * alfa_max, int * limit, float * QC)
+	int readfromfile(char * path, Point ** pts, int * n, int * k, double * alfa_zero, double * alfa_max, int * limit, double * QC)
 	{
 
 		FILE* file = fopen(path, "r");
@@ -331,21 +331,21 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 			return 0;
 		}
 
-		fscanf(file, "%d %d %f %f %d %f", n, k, alfa_zero, alfa_max, limit, QC);
+		fscanf(file, "%d %d %lf %lf %d %lf", n, k, alfa_zero, alfa_max, limit, QC);
 		fflush(NULL);
 
-		printf("n = %d  k= %d alfa0 = %f alfa_max = %f limit = %d  QC =%f \n", *n, *k, *alfa_zero, *alfa_max, *limit, *QC);
+		printf("n = %d  k= %d alfa0 = %lf alfa_max = %lf limit = %d  QC =%lf \n", *n, *k, *alfa_zero, *alfa_max, *limit, *QC);
 		fflush(NULL);
 
 		*pts = (Point*)malloc(sizeof(Point) * (*n)); // create n array of points
 
 		for (int i = 0; i < *n; i++)
 		{
-			(*pts)[i].values = (float*)malloc(sizeof(float)*(*k + 1)); // (2,20) exmaple
+			(*pts)[i].values = (double*)malloc(sizeof(double)*(*k + 1)); // (2,20) exmaple
 
 			for (int j = 0; j < *k; j++)
 			{
-				fscanf(file, "%f", &(*pts)[i].values[j]);
+				fscanf(file, "%lf", &(*pts)[i].values[j]);
 
 			}
 			(*pts)[i].values[*k] = 1; // plus 1 in points xi ( 2,3 ,1 )
@@ -363,7 +363,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 	}
 
 
-	void FreeConstanstCuda(Point * dev_pts, float * dev_values, int * dev_n, int * dev_k)
+	void FreeConstanstCuda(Point * dev_pts, double * dev_values, int * dev_n, int * dev_k)
 	{
 		MyCudaFree(dev_pts,03);
 		MyCudaFree(dev_values, 04);
@@ -372,17 +372,17 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 	}
 
-	void mallocConstastCuda(Point * pts, int n, int k, Point ** dev_pts, int ** dev_n, int ** dev_k,float ** dev_values)
+	void mallocConstastCuda(Point * pts, int n, int k, Point ** dev_pts, int ** dev_n, int ** dev_k,double ** dev_values)
 	{
 
 		MyCudaMalloc((void**)&(*dev_pts), sizeof(Point)* n, 1);
-		MyCudaMalloc((void**)&(*dev_values), sizeof(float)* (n*(k + 1)), 2); // value n * (k+1) each point have k+1 dims values
+		MyCudaMalloc((void**)&(*dev_values), sizeof(double)* (n*(k + 1)), 2); // value n * (k+1) each point have k+1 dims values
 
 		MyCudaCopy((*dev_pts), pts, sizeof(Point)*n, cudaMemcpyHostToDevice, 4);
 
 		for (int i = 0; i < n; i++)
 		{
-			MyCudaCopy(&(*dev_values)[i*(k + 1)], &pts[i].values[0], sizeof(float)*(k + 1), cudaMemcpyHostToDevice, 5);
+			MyCudaCopy(&(*dev_values)[i*(k + 1)], &pts[i].values[0], sizeof(double)*(k + 1), cudaMemcpyHostToDevice, 5);
 
 		}
 
@@ -398,10 +398,11 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 	//doJob function , each process will execute that function to calcaulate the alfa's.
 	// the function will return a minium W , and minium q ,miniumalfa
 	// if all alfas dont good enough for QC, return q = 2 
-	void DoJob(float alfaZero, float alfaMax,float stepAlfa, Point * dev_pts,float * dev_values,int * dev_n,int * dev_k, int n, int k, int limit,
-		float QC, double * qMin,float * wMin,float *alfaMin)
+	void DoJob(double alfaZero, double alfaMax,double stepAlfa, Point * dev_pts,double * dev_values,int * dev_n,int * dev_k, int n, int k, int limit,
+		double QC, double * qMin,double * wMin,double *alfaMin)
 	{
 		double maxIteraction = (alfaMax - alfaZero) / stepAlfa;
+		maxIteraction = round(maxIteraction);
 		int numofSteps = (int)maxIteraction;
 
 		printf(" JOB %f - %f \n ", alfaZero, alfaMax);
@@ -411,14 +412,14 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 
 
 		double * Q_saved = (double*)malloc(numofSteps*sizeof(double));
-		float ** WSaved = (float**)malloc(numofSteps * sizeof(float * ));
+		double ** WSaved = (double**)malloc(numofSteps * sizeof(double * ));
 
 
 		#pragma omp parallel for
 		for (int i = 0; i < numofSteps; i++) // running over all alfa
 		{
 
-			float * tempAlfa = (float*)malloc(sizeof(float));
+			double * tempAlfa = (double*)malloc(sizeof(double));
 			*tempAlfa = alfaZero + i*alfaZero;
 			
 			Q_saved[i] = ProcessAlfa(dev_pts, dev_values,tempAlfa, dev_n, dev_k, limit, QC, n , k,&WSaved[i]);
@@ -442,7 +443,7 @@ int readfromfile(char * path, Point ** pts, int * n, int * k, float * alfa_zero,
 			}
 		}
 
-		float alfaDynamic = alfaZero + indexer *alfaZero;
+		double alfaDynamic = alfaZero + indexer *alfaZero;
 		
 
 		//copy to up level

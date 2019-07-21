@@ -53,10 +53,10 @@ void MyCudaFree(void * object,int error_label)
 	}
 }
 
-__device__ float dot(float * dev_w, float * dev_x,int indexValues, int * dev_k)
+__device__ double dot(double * dev_w, double * dev_x,int indexValues, int * dev_k)
 {
 
-	float sum = 0;
+	double sum = 0;
 	for (int i = 0; i < *dev_k + 1; i++)
 	{
 		sum += dev_w[i] * dev_x[i+ indexValues];
@@ -68,7 +68,7 @@ __device__ float dot(float * dev_w, float * dev_x,int indexValues, int * dev_k)
 }
 
 //(dev_alfa, dev_values, dev_index_values, dev_W);
-__global__ void createNewWeight(float * dev_alfa, float *dev_values,int * indexerValues, float * W_dev)
+__global__ void createNewWeight(double * dev_alfa, double *dev_values,int * indexerValues, double * W_dev)
 {
 	int i = threadIdx.x;
 	W_dev[i] = (*dev_alfa)*dev_values[*indexerValues + i] + W_dev[i];
@@ -77,7 +77,7 @@ __global__ void createNewWeight(float * dev_alfa, float *dev_values,int * indexe
 
 
 
-__global__ void	getMisLeadArrayFromPoints(Point * dev_pts, float* dev_values ,float * dev_W, int * dev_mislead, int * dev_k,int * dev_n) {
+__global__ void	getMisLeadArrayFromPoints(Point * dev_pts, double* dev_values ,double * dev_W, int * dev_mislead, int * dev_k,int * dev_n) {
 
 
 	int i = blockIdx.x * 1000 + threadIdx.x;
@@ -95,7 +95,7 @@ __global__ void	getMisLeadArrayFromPoints(Point * dev_pts, float* dev_values ,fl
 
 		// calaculate fx 
 
-		float fx = dot(dev_W, dev_values,indexValues, dev_k);
+		double fx = dot(dev_W, dev_values,indexValues, dev_k);
 
 //		printf("dot for point[%d] = %f \n", i, fx);
 
@@ -118,17 +118,17 @@ __global__ void	getMisLeadArrayFromPoints(Point * dev_pts, float* dev_values ,fl
 	}
 }
 
-double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
-	, int *dev_k, int limit, float QC, int n, int k,float ** WSaved)
+double ProcessAlfa(Point * dev_pts,double* dev_values, double  * alfa, int *dev_n
+	, int *dev_k, int limit, double QC, int n, int k,double ** WSaved)
 {
-	*WSaved = (float*)malloc((k + 1) * sizeof(float)); // W k+1 dims 
+	*WSaved = (double*)malloc((k + 1) * sizeof(double)); // W k+1 dims 
 	int * tempresult = (int*)malloc(n * sizeof(int)); // 
 	int * mislead = (int*)malloc(n * sizeof(int)); // array of n points , mislead points will be 1 or -1 ,currect=0
 
 
 	int * dev_mislead = NULL;
-	float * dev_W = NULL;
-	float * dev_alfa = NULL;
+	double * dev_W = NULL;
+	double * dev_alfa = NULL;
 	int * dev_tempresult = NULL;
 	cudaError_t cudaStatus;
 
@@ -146,18 +146,18 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 	// w , mislead_pts , dev_alfa,tempresult,
 
 
-	MyCudaMalloc((void**)&dev_W, sizeof(float)* (k + 1), 7);
-	cudaMemset(dev_W, 0, sizeof(float)* (k + 1));
+	MyCudaMalloc((void**)&dev_W, sizeof(double)* (k + 1), 7);
+	cudaMemset(dev_W, 0, sizeof(double)* (k + 1));
 
-	//MyCudaCopy(dev_W, W, sizeof(float)*(k + 1), cudaMemcpyHostToDevice, 8);
+	//MyCudaCopy(dev_W, W, sizeof(double)*(k + 1), cudaMemcpyHostToDevice, 8);
 
 	MyCudaMalloc((void**)&dev_mislead, sizeof(int)* (n), 9);
 	cudaMemset(dev_mislead, 0, sizeof(int)* (n));
 
 	//MyCudaCopy(dev_mislead, mislead, sizeof(int)*(n), cudaMemcpyHostToDevice, 10);
 
-	MyCudaMalloc((void**)&dev_alfa, sizeof(float), 11);
-	MyCudaCopy(dev_alfa, alfa, sizeof(float), cudaMemcpyHostToDevice, 12);
+	MyCudaMalloc((void**)&dev_alfa, sizeof(double), 11);
+	MyCudaCopy(dev_alfa, alfa, sizeof(double), cudaMemcpyHostToDevice, 12);
 
 	MyCudaMalloc((void**)&dev_tempresult, sizeof(int)*n, 13);
 	MyCudaCopy(dev_tempresult, tempresult, sizeof(int)*n, cudaMemcpyHostToDevice, 14);
@@ -172,9 +172,9 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 	//Point * pts2 = (Point*)malloc(sizeof(Point)*n);
 
 
-	//MyCudaCopy(W,dev_W, sizeof(float)*(k + 1), cudaMemcpyDeviceToHost, 100);
+	//MyCudaCopy(W,dev_W, sizeof(double)*(k + 1), cudaMemcpyDeviceToHost, 100);
 	//MyCudaCopy(mislead, dev_mislead, sizeof(int)*(n), cudaMemcpyDeviceToHost, 101);
-	//MyCudaCopy(alfa, dev_alfa, sizeof(float), cudaMemcpyDeviceToHost, 120);
+	//MyCudaCopy(alfa, dev_alfa, sizeof(double), cudaMemcpyDeviceToHost, 120);
 	//MyCudaCopy(tempresult, dev_tempresult, sizeof(int)*n, cudaMemcpyDeviceToHost, 140);
 
 //MyCudaCopy(pts2, dev_pts, sizeof(int)*n, cudaMemcpyDeviceToHost, 145);
@@ -244,7 +244,7 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 			// need to create a new W 
 
 			*alfa = *alfa*mislead[indexerMiss]; // alfa * sign
-			MyCudaCopy(dev_alfa, alfa, sizeof(float), cudaMemcpyHostToDevice, 77);
+			MyCudaCopy(dev_alfa, alfa, sizeof(double), cudaMemcpyHostToDevice, 77);
 
 			*alfa = fabs(*alfa); // back to postive alfa
 			
@@ -270,7 +270,7 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 			}
 
 
-			//MyCudaCopy(W, dev_W, sizeof(float)*(k + 1), cudaMemcpyDeviceToHost, 70);
+			//MyCudaCopy(W, dev_W, sizeof(double)*(k + 1), cudaMemcpyDeviceToHost, 70);
 
 			//printf("new W = [%f ,%f,%f,%f] \n", (W)[0], (W)[1], (W)[2], (W)[3]);
 
@@ -314,14 +314,14 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 			}
 		}
 
-		//cudaMemset(dev_W, 0, sizeof(float)* (k + 1)); // clean up
+		//cudaMemset(dev_W, 0, sizeof(double)* (k + 1)); // clean up
 		//cudaMemset(dev_mislead, 0, sizeof(int)* (n));
 		//cudaMemset(dev_tempresult, 0, sizeof(int)* (n));
 
 
 		double q = sumOFmisLead / (n*(1.0));
 
-		MyCudaCopy(*WSaved, dev_W, sizeof(float)*(k + 1), cudaMemcpyDeviceToHost, 70); // copy W
+		MyCudaCopy(*WSaved, dev_W, sizeof(double)*(k + 1), cudaMemcpyDeviceToHost, 70); // copy W
 
 
 		FreeFunction(dev_W, dev_alfa, dev_mislead, dev_tempresult);
@@ -336,7 +336,7 @@ double ProcessAlfa(Point * dev_pts,float* dev_values, float  * alfa, int *dev_n
 }
 
 
-cudaError_t FreeFunction(float * dev_W ,float * dev_alfa, int * dev_mislead ,int * dev_tempresult)
+cudaError_t FreeFunction(double * dev_W ,double * dev_alfa, int * dev_mislead ,int * dev_tempresult)
 {
 	cudaError_t cudaStatus;
 
